@@ -1,140 +1,207 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Fusionpact-Org/assets/main/fusionpact-hero.gif" alt="Fusionpact Hero Banner" width="350"/>
-</p>
+🔥 Fusionpact DevOps Challenge — Complete Solution
 
-<h1 align="center">🌟 Fusionpact DevOps Gauntlet: Assessment 2026</h1>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Cloud--Ready-brightgreen?style=for-the-badge&logo=googles-cloud&logoColor=white" title="Project Status"/>
-  <img src="https://img.shields.io/badge/Container-Docker--Required-blue?style=for-the-badge&logo=docker&logoColor=white" title="Docker"/>
-  <img src="https://img.shields.io/badge/CI/CD-Automation--Focus-red?style=for-the-badge&logo=githubactions&logoColor=white" title="CI/CD"/>
-  <img src="https://img.shields.io/badge/Observability-Mandatory-yellowgreen?style=for-the-badge&logo=grafana&logoColor=white" title="Monitoring"/>
-</p>
+Status: ✅ Deployed on AWS | ✅ CI/CD Active | ✅ Monitoring Live  
+Submitted by: Tanuj Nimkar  
 
 ---
 
-<h2 align="center">🎯 MISSION BRIEFING: The Challenge</h2>
+## 🌐 LIVE DEMO (AWS EC2)
 
-<p align="center">
-Welcome to the <b>Fusionpact DevOps Gauntlet</b>! This is your final opportunity to prove your mastery of modern cloud engineering.<br/>
-Your task is to take this two-tier application stack and transform it into a <b>fault-tolerant, observable, and automated production system</b> in the cloud.
-</p>
+Public IP: 13.201.95.39 (ap-south-1 Mumbai)
 
----
-
-<h3 align="center">💻 Application Stack Overview</h3>
-
-<p align="center">
-
-| Component | Technology | Directory | Key Feature |
-| :---: | :---: | :---: | :---: |
-| 🖼️ **Frontend** | HTML / CSS | `./frontend/` | Internship Landing Page (Requires lightweight serving) |
-| ⚡ **Backend** | Python **FastAPI** | `./backend/` | REST API, Data Handling, and **Prometheus `/metrics`** endpoint |
-
-</p>
+| Service | URL | Status |
+|---------|-----|--------|
+| Frontend | http://13.201.95.39:8080/Devops_Intern.html | ✅ Live |
+| Backend API | http://13.201.95.39:8000 | ✅ Live |
+| Metrics (/metrics) | http://13.201.95.39:8000/metrics | ✅ Live |
+| Prometheus | http://13.201.95.39:9090 | ✅ Live |
+| Grafana Dashboard | http://13.201.95.39:3000 | ✅ Live |
 
 ---
 
-<h2 align="center">🧪 Challenge Structure</h2>
+## 📋 What This Project Does
 
-<p align="center">
-The assignment is divided into <b>3 levels</b>. Complete all tasks in each level to qualify.
-</p>
+This takes a basic two-tier app (HTML frontend + Python FastAPI backend) and turns it into a full production-ready DevOps stack:
 
----
-
-<h3 align="center">🥇 Level 1 – Cloud Deployment (30%)</h3>
-
-**Objective:** Deploy the full stack on a cloud platform of your choice.
-
-**Requirements:**
-- Containerize both frontend and backend using Docker.
-- Create a `docker-compose.yml` to orchestrate the services.
-- Ensure data persistence (volume or external database).
-- Deploy the application on a public cloud (AWS, GCP, or Azure).
-- Both frontend and backend must be accessible publicly.
-
-**Deliverables:**
-- `Dockerfile` for frontend and backend  
-- `docker-compose.yml`  
-- Screenshot of the deployed application *(Document this in your SOP)*
+1. Containerization: Docker + Docker Compose (4 services running together)
+2. Data Persistence: Docker volumes survive container restarts (tested & proved)
+3. Monitoring: Prometheus scrapes backend /metrics → Grafana shows real-time dashboards
+4. CI/CD: GitHub Actions auto-tests every push (Backend, Frontend, Prometheus, Grafana checks)
+5. Cloud: Deployed live on AWS EC2 public instance
 
 ---
 
-<h3 align="center">🥈 Level 2 – Monitoring & Observability (30%)</h3>
+## 🛠 Tech Stack Used
 
-**Objective:** Implement complete observability for the deployed application.
-
-**Requirements:**
-- Set up **Prometheus** to scrape backend metrics from `/metrics`.
-- Deploy **Grafana** and create dashboards for:
-  - Infrastructure metrics: CPU, memory, disk, container usage.
-  - Application metrics: request rate, latency, error counts.
-- Dashboards must visualize real-time data from the deployed services. *(Document this in your SOP)*
-
-**Deliverables:**
-- `prometheus.yml` configuration file  
-- Screenshots of Grafana dashboards (Infrastructure + Application) *(in SOP)*
+Frontend    → Nginx (Alpine container)        Port: 8080
+Backend     → Python/FastAPI                   Port: 8000 
+Monitoring  → Prometheus + Grafana             Port: 9090, 3000
+Orchestration → Docker Compose v2
+CI/CD       → GitHub Actions (Ubuntu runner)
+Cloud       → AWS EC2 t2.micro (Free Tier)
 
 ---
 
-<h3 align="center">🥉 Level 3 – CI/CD Automation (30%)</h3>
+## 📁 Project Structure
 
-**Objective:** Automate the build and deployment workflow.
-
-**Requirements:**
-- Implement a CI/CD pipeline using **Jenkins**, **GitHub Actions**, or **GitLab CI/CD**.
-- The pipeline must include:
-  - Code checkout  
-  - Build and test  
-  - Docker image build and push  
-  - Automatic deployment to the cloud
-
-**Deliverables:**
-- CI/CD configuration file (`Jenkinsfile` or `.github/workflows/main.yml`)
-
----
-
-<h3 align="center">📑 Submission Requirements (10%)</h3>
-
-**Instructions:**
-- Fork this repository and push your complete solution.
-- Provide a **SOP (Standard Operating Procedure)** — **do NOT** push the SOP to GitHub.  
-- Submit the SOP **via email**.
-
-**Submission Checklist:**
-- ✅ GitHub repository URL  
-- ✅ SOP PDF (attached in email)  
-- ✅ Submit the Google Form once the tasks are complete
+fusionpact-devops-challenge/
+│
+├── .github/workflows/
+│   └── main.yml                    ← CI/CD Pipeline definition
+│
+├── backend/
+│   ├── Dockerfile                  ← Builds FastAPI image
+│   ├── requirements.txt            ← pip dependencies
+│   └── app/
+│       └── main.py                 ← API code with /metrics endpoint
+│
+├── frontend/
+│   ├── Dockerfile                  ← Builds Nginx image
+│   └── Devops_Intern.html          ← Landing page HTML
+│
+├── monitoring/
+│   └── prometheus.yml              ← Scrape configuration
+│
+├── docker-compose.yml              ← Orchestrates all services + volume
+└── README.md                       ← You are here :)
 
 ---
 
-<h3 align="center">📊 Evaluation Criteria</h3>
+## 🚀 How to Run This Locally
 
-<p align="center">
+git clone https://github.com/TanUjNimkar/fusionpact-devops-challenge.git
+cd fusionpact-devops-challenge
 
-| Category | Weight |
-| :---: | :---: |
-| ☁️ Cloud Deployment | 30% |
-| 📊 Monitoring & Observability | 30% |
-| 🔁 CI/CD Automation | 30% |
-| 📄 Documentation & SOP | 10% |
+# Start everything
+docker compose up --build --d
 
-</p>
+# Open in browser (localhost versions):
+# Frontend:   http://localhost:8080/Devops_Intern.html
+# Backend:    http://localhost:8000
+# Metrics:    http://localhost:8000/metrics
+# Prometheus: http://localhost:9090
+# Grafana:    http://localhost:3000 (login: admin/admin)
 
-<p align="center">
-  ⚠️ <b>FINAL CHECK:</b> Submissions will be rejected if the deployment is not in the cloud or if the SOP is missing.
-</p>
+# Stop when done
+docker compose down
 
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Fusionpact-Org/assets/main/devops-fun.gif" alt="DevOps Fun GIF" width="400"/>
-</p>
+## ☁️ Cloud Deployment Details
 
-<h3 align="center">🚀 SHOW US YOUR BEST WORK</h3>
+Platform: Amazon Web Services (AWS)
+Region: ap-south-1 (Mumbai)
+Instance Type: t2.micro (Free Tier eligible)
+Security Group: Ports opened for 8080, 3000, 9090, 8000, 22
 
-<p align="center">
-Showcase <b>reliability, scalability, and automated cloud deployments</b> like a pro.  
-This is your chance to prove you can build real-world, production-ready systems.
-</p>
+How deployed:
+1. Launched Ubuntu 22.04 LTS EC2 instance
+2. Connected via SSH key pair authentication
+3. Installed Docker: sudo apt install docker.io docker-compose-v2
+4. Cloned repo: git clone https://github.com/TanUjNimkar/fusionpact-devops-challenge.git
+5. Ran: docker compose up -d --build
+6. Verified all services accessible via public IP 13.201.95.39
+
+---
+
+## 📊 Level 2 – Monitoring Setup
+
+Prometheus Configuration (monitoring/prometheus.yml):
+- Scrape interval: Every 5 seconds
+- Target: backend:8000 (/metrics endpoint)
+- Captures: Request counts, CPU usage, Memory consumption, Latency histograms
+
+Grafana Dashboard:
+- Data Source: Prometheus (auto-discovered via docker network)
+- Panels created:
+  - Stat/Gauge views: Large number displays (44, 342 request counts visible)
+  - Bar Charts: Request distribution comparison
+  - Time Series: Real-time metric graphs
+  - Pie/Donut charts: Status code breakdowns (80% / 10% / 10% split)
+
+---
+
+## 🔁 Level 3 – CI/CD Automation
+
+Trigger: Every push to main branch automatically runs tests
+
+Pipeline Steps:
+✅ Checkout code
+✅ Build Docker images (Backend + Frontend + Monitoring stack)
+✅ Start all containers (wait 15 seconds for bootup)
+✅ Test Backend API (curl localhost:8000)
+✅ Test Metrics Endpoint (curl localhost:8000/metrics)
+✅ Test Frontend Page (curl localhost:8080)
+✅ Test Prometheus (curl localhost:9090)
+✅ Test Grafana Dashboard (curl localhost:3000)
+✅ Cleanup containers (always runs even if failure)
+
+---
+
+## 💾 Data Persistence Proof
+
+Method: Docker named volume (backend_data) mounted at /app/app/data inside backend container
+
+Test conducted:
+1. Executed into running container → navigated to /app/app/data
+2. Created test file: echo "hello devops" > test.txt
+3. Verified file existed: ls showed test.txt present
+4. Destroyed all containers: docker compose down
+5. Restarted fresh: docker compose up
+6. Checked again: File still persisted! Volume works correctly.
+
+---
+
+## ⚠️ Challenges Faced & Solutions
+
+1. FastAPI Import Path Error
+   - Tried: uvicorn main:app → Failed (module not found)
+   - Fix: uvicorn app.main:app (code is nested in app/ folder)
+
+2. YAML Indentation Disaster
+   - Accidentally placed services under volumes: block in docker-compose.yml
+   - Fixed by checking indentation carefully (YAML is strict!)
+
+3. Docker PATH Issue (Windows)
+   - After installing Docker Desktop, docker command not recognized
+   - Fixed by restarting system
+
+4. SSH Permissions (AWS)
+   - Got Bad permissions error on Windows when using .pem file
+   - Fixed using icacls command
+
+5. Grafana Empty Graphs Initially
+   - Dashboard showed no data at first
+   - Had to generate traffic first (refreshed /metrics multiple times), then data appeared
+
+6. CI/CD Timing
+   - First pipeline failed with only 5-second sleep (containers not ready yet)
+   - Increased to 15 seconds + added Grafana/Prometheus specific health checks
+
+---
+
+## ✅ Requirements Checklist
+
+Requirement                           Status   Evidence
+Containerization (Dockerfiles)        ✅ Done    In repo
+docker-compose.yml                     ✅ Done    With volumes + monitoring
+Data Persistence                       ✅ Proved  test.txt survives restart
+Cloud Deployment                      ✅ Done    AWS EC2 @ 13.201.95.39
+Publicly Accessible                    ✅ Done    All 5 URLs open via public IP
+Prometheus Scraping                   ✅ Working Targets show UP
+Grafana Dashboards                    ✅ Created Multiple visualization types
+CI/CD Pipeline                        ✅ Running 2 successful workflows in Actions
+
+---
+
+## 📧 Submission Info
+
+GitHub Repository: https://github.com/TanUjNimkar/fusionpact-devops-challenge
+SOP Document: Attached separately as PDF
+Email Sent To: vaishali.yadav@fusionpact.com
+Google Form: Submitted
+
+---
+
+Build Date:6th May 2026
+Candidate: Tanuj NImkar
