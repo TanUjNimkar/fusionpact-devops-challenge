@@ -1,0 +1,23 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout my code
+      uses: actions/checkout@v4
+
+    - name: Build Docker images
+      run: docker compose build
+
+    - name: Start containers and test
+      run: |
+        docker compose up -d
+        sleep 8
+        curl -f http://localhost:8000 || exit 1
+        echo "Backend is working!"
