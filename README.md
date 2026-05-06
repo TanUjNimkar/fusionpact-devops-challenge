@@ -90,7 +90,7 @@ fusionpact-devops-challenge/
 │   └── aws-security.png
 │
 ├── docker-compose.yml            ← Orchestrates all services + volume
-└── README.md                     ← This file
+└── README.md                     ← Readme file
 ```
 
 ---
