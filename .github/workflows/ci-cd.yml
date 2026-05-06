@@ -9,15 +9,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout my code
-      uses: actions/checkout@v4
+      - name: Checkout my code
+        uses: actions/checkout@v4
 
-    - name: Build Docker images
-      run: docker compose build
+      - name: Build Docker images
+        run: docker compose build
 
-    - name: Start containers and test
-      run: |
-        docker compose up -d
-        sleep 8
-        curl -f http://localhost:8000 || exit 1
-        echo "Backend is working!"
+      - name: Start containers
+        run: |
+          docker compose up -d
+          sleep 20
+
+      - name: Test backend
+        run: curl -f http://localhost:8000 || exit 1
+
+      - name: Test metrics
+        run: curl -f http://localhost:8000/metrics || exit 1
+
+      - name: Test frontend
+        run: curl -f http://localhost:8080/Devops_Intern.html || exit 1
+
+      - name: Test Prometheus
+        run: curl -f http://localhost:9090 || exit 1
+
+      - name: Test Grafana
+        run: curl -f http://localhost:3000 || exit 1
