@@ -1,258 +1,256 @@
 # 🔥 Fusionpact DevOps Challenge — Complete Solution
 
-**Status:** ✅ Deployed on AWS | ✅ CI/CD Active | ✅ Monitoring Live  
-**Submitted by:** Tanuj Nimkar  
+**Status:** ✅ Deployed on AWS | ✅ Monitoring Active | ✅ CI/CD Working  
+**Candidate:** Tanuj Nimkar  
 
 ---
 
-## 🌐 LIVE DEMO (AWS EC2)
+# 🌐 Live AWS Deployment
 
-> **Public IP:** `13.201.95.39` (ap-south-1 Mumbai)
+| Service | URL |
+|----------|------|
+| Frontend | http://13.201.95.39:8080/Devops_Intern.html |
+| Backend API | http://13.201.95.39:8000 |
+| Metrics Endpoint | http://13.201.95.39:8000/metrics |
+| Prometheus | http://13.201.95.39:9090 |
+| Grafana Dashboard | http://13.201.95.39:3000 |
 
-| Service | URL | Status |
-|---------|-----|--------|
-| **Frontend** | http://13.201.95.39:8080/Devops_Intern.html | ✅ Live |
-| **Backend API** | http://13.201.95.39:8000 | ✅ Live |
-| **Metrics (/metrics)** | http://13.201.95.39:8000/metrics | ✅ Live |
-| **Prometheus** | http://13.201.95.39:9090 | ✅ Live |
-| **Grafana Dashboard** | http://13.201.95.39:3000 | ✅ Live |
+---
 
-### 📸 Cloud Verification Screenshots
+# ☁️ AWS Security Group Configuration
 
-**Frontend Webpage Live on AWS:**
+The EC2 instance security group was configured with all required ports for:
+- frontend access
+- backend API
+- monitoring stack
+- SSH access
 
-![Frontend Page](images/frontend.png)
+![AWS Security Group](images/aws-security.png)
 
-**Backend API Running on Public IP:**
+---
+
+# 🖥️ Frontend Application Running on AWS
+
+The frontend was successfully deployed publicly on AWS EC2 using Nginx.
+
+![Frontend Application](images/frontend.png)
+
+---
+
+# ⚡ Backend API Verification
+
+FastAPI backend successfully running and accessible publicly.
 
 ![Backend API](images/backend-api.png)
 
-**Prometheus Metrics Output:**
+---
 
-![Metrics](images/metrics.png)
+# 📊 Prometheus Metrics Endpoint
+
+Prometheus metrics exposed correctly through `/metrics`.
+
+The backend exports:
+- request counts
+- CPU metrics
+- memory usage
+- latency statistics
+
+![Prometheus Metrics](images/metrics.png)
 
 ---
 
-## 📋 What This Project Does
+# 📈 Grafana Monitoring Dashboard
 
-Transforms a basic two-tier app (HTML frontend + Python FastAPI backend) into production-ready DevOps stack:
-
-1. **Containerization:** Docker + Docker Compose (4 services)
-2. **Data Persistence:** Volumes survive restarts (tested & proved)
-3. **Monitoring:** Prometheus scrapes `/metrics` → Grafana shows real-time dashboards
-4. **CI/CD:** GitHub Actions auto-tests every push (all 5 services checked)
-5. **Cloud:** Deployed live on AWS EC2 public instance
-
----
-
-## 🛠 Tech Stack Used
-
-| Component | Technology | Port |
-|-----------|-----------|------|
-| Frontend | Nginx (Alpine) | 8080 |
-| Backend | Python / FastAPI | 8000 |
-| Monitoring | Prometheus | 9090 |
-| Visualization | Grafana | 3000 |
-| Orchestration | Docker Compose v2 | - |
-| CI/CD | GitHub Actions | - |
-| Cloud | AWS EC2 t2.micro | - |
-
----
-
-## 📁 Project Structure
-
-```
-fusionpact-devops-challenge/
-│
-├── .github/
-│   └── workflows/
-│       └── main.yml              ← CI/CD Pipeline
-│
-├── backend/
-│   ├── Dockerfile                ← FastAPI image build
-│   ├── requirements.txt          ← Python dependencies
-│   └── app/
-│       └── main.py               ← API code with /metrics endpoint
-│
-├── frontend/
-│   ├── Dockerfile                ← Nginx image build
-│   └── Devops_Intern.html        ← Landing page
-│
-├── monitoring/
-│   └── prometheus.yml            ← Scrape configuration
-│
-├── images/                       ← Documentation screenshots
-│   ├── frontend.png
-│   ├── backend-api.png
-│   ├── metrics.png
-│   ├── grafana-dashboard.png
-│   ├── cicd-success.png
-│   └── aws-security.png
-│
-├── docker-compose.yml            ← Orchestrates all services + volume
-└── README.md                     ← Readme file
-```
-
----
-
-## ☁️ Cloud Deployment (AWS)
-
-**Infrastructure:** Amazon Web Services  
-**Region:** ap-south-1 (Mumbai)  
-**Instance:** t2.micro (Free Tier eligible)
-
-### AWS Security Group Configuration
-
-![Security Group](images/aws-security.png)
-
-### Deployment Steps Used
-
-```bash
-# Connect via SSH
-ssh -i "key.pem" ubuntu@ec2-13-201-95-39.ap-south-1.compute.amazonaws.com
-
-# Install Docker
-sudo apt update && sudo apt install docker.io docker-compose-v2 -y
-
-# Deploy app
-git clone https://github.com/TanUjNimkar/fusionpact-devops-challenge.git
-cd fusionpact-devops-challenge
-docker compose up -d --build
-```
-
----
-
-## 🚀 Local Quick Start
-
-```bash
-git clone https://github.com/TanUjNimkar/fusionpact-devops-challenge.git
-cd fusionpact-devops-challenge
-
-docker compose up --build -d
-
-# Access locally:
-# Frontend:   http://localhost:8080/Devops_Intern.html
-# Backend:    http://localhost:8000
-# Metrics:    http://localhost:8000/metrics
-# Prometheus: http://localhost:9090
-# Grafana:    http://localhost:3000 (admin/admin)
-
-docker compose down  # Stop when done
-```
-
----
-
-## 📊 Level 2 — Monitoring Setup
-
-### Prometheus Configuration
-
-- **Scrape Interval:** Every 5 seconds
-- **Target:** `backend:8000/metrics`
-- **Captures:** Request counts, CPU, Memory, Latency histograms
-
-### Grafana Dashboard
-
-**Real-time visualizations created:**
+Grafana dashboards were configured to visualize:
+- HTTP request metrics
+- request distribution
+- monitoring health
+- backend activity
 
 ![Grafana Dashboard](images/grafana-dashboard.png)
 
-**Panels included:**
-- **Stat/Gauge views:** Large numbers showing request counts (44, 342 visible)
-- **Bar Charts:** Distribution comparison (green=healthy, red=high volume /metrics traffic)
-- **Pie/Donut charts:** Status code breakdowns (80% / 10% / 10% split)
-- **Time Series:** Real-time trend lines
-
-**Data Source:** Prometheus (auto-discovered via Docker network at `http://prometheus:9090`)
-
 ---
 
-## 🔁 Level 3 — CI/CD Automation
+# 🔁 GitHub Actions CI/CD Pipeline
 
-**Trigger:** Push to `main` branch
+GitHub Actions pipeline automatically performs:
 
-### Pipeline Workflow
+✅ Docker image builds  
+✅ Backend health checks  
+✅ Frontend availability checks  
+✅ Metrics endpoint checks  
+✅ Prometheus checks  
+✅ Grafana checks  
 
-✅ Checkout code  
-✅ Build Docker images (4 containers)  
-✅ Start all services (15s bootup delay)  
-✅ Test Backend API (`curl localhost:8000`)  
-✅ Test Metrics (`curl localhost:8000/metrics`)  
-✅ Test Frontend (`curl localhost:8080`)  
-✅ Test Prometheus (`curl localhost:9090`)  
-✅ Test Grafana (`curl localhost:3000`)  
-✅ Cleanup (runs always even if failure)
-
-### Latest Pipeline Result
+Successful pipeline execution:
 
 ![CI/CD Success](images/cicd-success.png)
 
-*GitHub Actions "update ci cd pipeline with service checks" — Success in 1m 14s*
+---
+
+# 🐳 Dockerized Architecture
+
+This project uses Docker Compose to orchestrate:
+
+| Container | Purpose |
+|------------|----------|
+| frontend | Nginx static frontend |
+| backend | FastAPI backend |
+| prometheus | Metrics collection |
+| grafana | Monitoring dashboard |
 
 ---
 
-## 💾 Data Persistence Proof
+# 📦 Docker Compose Setup
 
-**Method:** Named volume `backend_data` mounted at `/app/app/data`
+```yaml
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
 
-### Verification Test
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
 
-```bash
-# Inside running container
-docker exec -it backend-1 sh
-cd app/data
-echo "hello devops" > test.txt
-ls   # Shows: info.txt test.txt
-exit
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
 
-# Destroy everything
-docker compose down
-
-# Restart fresh
-docker compose up
-
-# Check again
-docker exec -it backend-1 sh
-cd app/data
-ls   # STILL SHOWS: info.txt test.txt ✅
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
 ```
 
-**Result:** Data survives container destruction completely.
+---
+
+# 💾 Data Persistence Verification
+
+Docker named volume `backend_data` was used to persist backend data.
+
+### Verification Commands
+
+```bash
+docker exec -it fusionpact-devops-challenge-backend-1 sh
+
+cd app/data
+
+echo "hello devops" > test.txt
+
+docker compose down
+
+docker compose up -d
+```
+
+After restarting containers, `test.txt` still existed, confirming persistent storage works correctly.
 
 ---
 
-## ⚠️ Challenges Faced
+# 🛠 Technologies Used
 
-1. **FastAPI Path Error:** Used `main:app` instead of `app.main:app` (nested folder structure)
-2. **YAML Indentation:** Accidentally put services under `volumes:` block (30 min debug!)
-3. **Docker PATH (Windows):** System restart needed after install
-4. **SSH Permissions:** Windows ACL fix required (`icacls`)
-5. **Grafana Empty Graphs:** Needed to generate traffic first before metrics appeared
-6. **CI/CD Timing:** Increased sleep from 5s→15s for slow-starting monitoring containers
-
----
-
-## ✅ Requirements Checklist
-
-| Criteria | Status | Evidence |
-|----------|--------|----------|
-| Containerization | ✅ Done | Dockerfiles in repo |
-| docker-compose.yml | ✅ Done | Volumes + 4 services |
-| Data Persistence | ✅ Proved | test.txt survives restart |
-| Cloud Deployment | ✅ Done | AWS EC2 @ 13.201.95.39 |
-| Publicly Accessible | ✅ Verified | All URLs open via public IP |
-| Prometheus Scraping | ✅ Working | Targets show UP |
-| Grafana Dashboards | ✅ Created | Gauges, Bars, Pies, Tables |
-| CI/CD Pipeline | ✅ Running | 2 successful workflow runs |
+| Technology | Purpose |
+|------------|---------|
+| Docker | Containerization |
+| Docker Compose | Multi-container orchestration |
+| FastAPI | Backend API |
+| Nginx | Frontend hosting |
+| Prometheus | Metrics collection |
+| Grafana | Monitoring dashboards |
+| GitHub Actions | CI/CD automation |
+| AWS EC2 | Cloud deployment |
 
 ---
 
-## 📧 Submission Info
+# ⚠️ Challenges Faced
 
-**Repository:** https://github.com/TanUjNimkar/fusionpact-devops-challenge  
-**SOP Document:** Attached PDF (separate email attachment)  
-**Contact:** vaishali.yadav@fusionpact.com  
+### FastAPI Import Path Issue
+Initially used:
+```bash
+uvicorn main:app
+```
+
+Corrected to:
+```bash
+uvicorn app.main:app
+```
 
 ---
 
-*Build Date: May 6, 2026*  
-*Candidate: Tanuj Nimkar*
+### YAML Indentation Errors
+Docker Compose failed due to incorrect YAML indentation under `volumes:`.
+
+---
+
+### Docker PATH Issue (Windows)
+Docker commands were not recognized until system restart.
+
+---
+
+### SSH Permission Problem
+Fixed Windows `.pem` permission issue using:
+
+```bash
+icacls fusionpact-devops-vm.pem /inheritance:r /grant:r "%USERNAME%:R"
+```
+
+---
+
+### Grafana Empty Panels
+Generated backend traffic manually by refreshing `/metrics` endpoint.
+
+---
+
+# ✅ Requirements Checklist
+
+| Requirement | Status |
+|-------------|--------|
+| Dockerized Frontend | ✅ |
+| Dockerized Backend | ✅ |
+| Docker Compose Setup | ✅ |
+| Persistent Storage | ✅ |
+| AWS Cloud Deployment | ✅ |
+| Public Accessibility | ✅ |
+| Prometheus Monitoring | ✅ |
+| Grafana Dashboard | ✅ |
+| CI/CD Automation | ✅ |
+| SOP Documentation | ✅ |
+
+---
+
+# 🌍 Public URLs
+
+### Frontend
+http://13.201.95.39:8080/Devops_Intern.html
+
+### Backend API
+http://13.201.95.39:8000
+
+### Metrics
+http://13.201.95.39:8000/metrics
+
+### Prometheus
+http://13.201.95.39:9090
+
+### Grafana
+http://13.201.95.39:3000
+
+---
+
+# 📁 Repository
+
+🔗 https://github.com/TanUjNimkar/fusionpact-devops-challenge
+
+---
+
+# ✅ Build Information
+
+| Property | Value |
+|----------|-------|
+| Candidate | Tanuj Nimkar |
+| Deployment Date | May 6, 2026 |
+| Cloud Provider | AWS EC2 |
+| Region | Mumbai (ap-south-1) |
