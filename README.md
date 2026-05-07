@@ -240,6 +240,19 @@ http://13.201.95.39:3000
 
 ---
 
+# 📧 Submission Info
+
+**Repository:**  
+https://github.com/TanUjNimkar/fusionpact-devops-challenge
+
+**SOP Document:**  
+Attached separately as PDF in email submission
+
+**Submission Contact:**  
+vaishali.yadav@fusionpact.com
+
+---
+
 # 📁 Repository
 
 🔗 https://github.com/TanUjNimkar/fusionpact-devops-challenge
